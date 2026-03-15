@@ -8,7 +8,7 @@ client = genai.Client()
 # ---------------- PAGE CONFIG ---------------- #
 
 st.set_page_config(
-    page_title="Let's Chat",
+    page_title="Aditi's Chatbot",
     page_icon="✨",
     layout="centered"
 )
@@ -22,14 +22,15 @@ st.markdown("""
 
 .stApp {
     background: linear-gradient(-45deg,
-        #ffffff,
-        #e8f2ff,
-        #f3f7ff,
-        #e6ecff
+        #0f172a,
+        #111827,
+        #1e1b4b,
+        #020617
     );
     background-size: 400% 400%;
-    animation: gradientBG 16s ease infinite;
+    animation: gradientBG 18s ease infinite;
     font-family: 'Segoe UI', sans-serif;
+    color: #ffffff;
 }
 
 @keyframes gradientBG {
@@ -145,7 +146,7 @@ st.caption("Tell me all about you! I'll listen")
 st.markdown("""
 <div class="welcome-card">
 
-### Welcome 👋
+### Bot at your service 👋
 
 Start your conversation below.
 
