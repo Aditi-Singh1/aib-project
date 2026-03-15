@@ -22,10 +22,10 @@ st.markdown("""
 
 .stApp {
     background: linear-gradient(-45deg,
-        #020617,
-        #0f0f1a,
-        #1a0b2e,
-        #050014
+        #1f2937,
+        #2b2b38,
+        #3b2a5a,
+        #202030
     );
     background-size: 400% 400%;
     animation: gradientBG 18s ease infinite;
