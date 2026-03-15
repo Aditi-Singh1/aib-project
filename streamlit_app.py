@@ -13,119 +13,26 @@ st.set_page_config(
     layout="centered"
 )
 
-# ---------------- ANIMATED CSS ---------------- #
+# ---------------- STYLING ---------------- #
 
 st.markdown("""
 <style>
 
-/* Animated gradient background */
+/* ---------- MAIN BACKGROUND ---------- */
 
 .stApp {
     background: linear-gradient(-45deg,
-        #0f172a,
-        #111827,
-        #1e1b4b,
-        #020617
+        #020617,
+        #0f0f1a,
+        #1a0b2e,
+        #050014
     );
     background-size: 400% 400%;
     animation: gradientBG 18s ease infinite;
     font-family: 'Segoe UI', sans-serif;
-    color: #ffffff;
 }
 
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Force ALL text to black */
-
-body, p, div, span, label {
-    color: black !important;
-}
-
-/* Titles */
-
-h1, h2, h3 {
-    color: black !important;
-    text-align: center;
-}
-
-/* Caption */
-
-.css-1kyxreq {
-    text-align: center;
-    color: black !important;
-}
-
-/* Chat messages */
-
-[data-testid="stChatMessage"] {
-    padding: 12px;
-    border-radius: 14px;
-    color: black !important;
-}
-
-/* User bubble */
-
-[data-testid="stChatMessage"]:nth-child(even) {
-    background-color: #eef3ff;
-}
-
-/* Assistant bubble */
-
-[data-testid="stChatMessage"]:nth-child(odd) {
-    background-color: #fffaf2;
-}
-
-/* Input box */
-
-textarea {
-    border-radius: 12px !important;
-    border: 1px solid #dddddd !important;
-    color: black !important;
-}
-
-/* Chat input placeholder */
-
-input {
-    color: black !important;
-}
-
-/* Buttons */
-
-button {
-    border-radius: 10px !important;
-    color: black !important;
-}
-
-/* Welcome card */
-
-.welcome-card {
-    background: white;
-    padding: 28px;
-    border-radius: 16px;
-    border: 1px solid #eeeeee;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.05);
-    margin-bottom: 25px;
-    color: black;
-}
-
-/* Hover effect */
-
-.welcome-card:hover {
-    transform: translateY(-3px);
-    transition: 0.25s;
-}
-
-/* Gradient animation */
+/* Animated gradient */
 
 @keyframes gradientBG {
     0% {background-position: 0% 50%;}
@@ -133,22 +40,118 @@ button {
     100% {background-position: 0% 50%;}
 }
 
+/* ---------- GLOBAL TEXT ---------- */
+
+h1, h2, h3, p, div, span, label {
+    color: #f1f1f1 !important;
+}
+
+/* Title styling */
+
+h1 {
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Caption */
+
+.css-1kyxreq {
+    text-align: center;
+    color: #cfcfe6 !important;
+}
+
+/* ---------- CHAT BUBBLES ---------- */
+
+[data-testid="stChatMessage"] {
+    padding: 14px;
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+}
+
+/* User bubble */
+
+[data-testid="stChatMessage"]:nth-child(even) {
+    background: rgba(120, 100, 255, 0.15);
+    border: 1px solid rgba(120, 100, 255, 0.3);
+}
+
+/* Bot bubble */
+
+[data-testid="stChatMessage"]:nth-child(odd) {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ---------- INPUT BOX ---------- */
+
+textarea {
+    border-radius: 12px !important;
+    background-color: #0b0b12 !important;
+    border: 1px solid #3c2b6e !important;
+    color: white !important;
+}
+
+/* Placeholder */
+
+textarea::placeholder {
+    color: #aaaaaa !important;
+}
+
+/* ---------- BUTTON ---------- */
+
+button {
+    border-radius: 10px !important;
+}
+
+/* ---------- WELCOME CARD ---------- */
+
+.welcome-card {
+    background: rgba(255,255,255,0.05);
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 10px 35px rgba(0,0,0,0.6);
+    margin-bottom: 30px;
+}
+
+/* Hover */
+
+.welcome-card:hover {
+    transform: translateY(-4px);
+    transition: 0.25s ease;
+}
+
+/* ---------- SCROLLBAR ---------- */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6b4eff;
+    border-radius: 10px;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
 # ---------------- HEADER ---------------- #
 
-st.title("Let's Chat")
-st.caption("Tell me all about you! I'll listen")
+st.title("Aditi's AI Assistant")
+st.caption("A calm space for conversations")
 
 # ---------------- WELCOME CARD ---------------- #
 
 st.markdown("""
 <div class="welcome-card">
 
-### Bot at your service 👋
+### Welcome ✨
 
-Start your conversation below.
+Ask anything, explore ideas, or simply chat.
+
+Your AI assistant is ready.
 
 </div>
 """, unsafe_allow_html=True)
@@ -158,18 +161,18 @@ Start your conversation below.
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Display previous messages
+# Display messages
 
 for msg in st.session_state.messages:
 
-    avatar = "👤" if msg["role"] == "user" else "🤖"
+    avatar = "👤" if msg["role"] == "user" else "✨"
 
     with st.chat_message(msg["role"], avatar=avatar):
         st.markdown(msg["content"])
 
 # ---------------- USER INPUT ---------------- #
 
-user_input = st.chat_input("   Ask something...")
+user_input = st.chat_input("Ask something...")
 
 if user_input:
 
@@ -181,7 +184,7 @@ if user_input:
         "content": user_input
     })
 
-    with st.chat_message("assistant", avatar="🤖"):
+    with st.chat_message("assistant", avatar="✨"):
 
         with st.spinner("Thinking..."):
 
