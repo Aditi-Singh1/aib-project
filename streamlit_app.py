@@ -21,14 +21,14 @@ st.markdown("""
 /* Animated gradient background */
 
 .stApp {
-    background: linear-gradient(-45deg, 
-        #fff9fc, 
-        #ffd6ea, 
-        #f3e8ff, 
-        #ffc4dd
+    background: linear-gradient(-45deg,
+        #ffffff,
+        #e8f2ff,
+        #f3f7ff,
+        #e6ecff
     );
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 16s ease infinite;
     font-family: 'Segoe UI', sans-serif;
 }
 
